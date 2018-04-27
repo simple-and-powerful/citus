@@ -81,10 +81,7 @@ SELECT count(*) FROM
    (SELECT 1::bigint)
 ) b;
 DEBUG:  generating subplan 7_1 for subquery SELECT l_orderkey FROM public.lineitem_subquery
-DEBUG:  Creating router plan
-DEBUG:  Plan is router executable
-DEBUG:  generating subplan 7_2 for subquery SELECT intermediate_result.l_orderkey FROM read_intermediate_result('7_1'::text, 'binary'::citus_copy_format) intermediate_result(l_orderkey bigint) UNION ALL SELECT (1)::bigint AS int8
-DEBUG:  Plan 7 query after replacing subqueries and CTEs: SELECT count(*) AS count FROM (SELECT intermediate_result.l_orderkey FROM read_intermediate_result('7_2'::text, 'binary'::citus_copy_format) intermediate_result(l_orderkey bigint)) b
+DEBUG:  Plan 7 query after replacing subqueries and CTEs: SELECT count(*) AS count FROM (SELECT intermediate_result.l_orderkey FROM read_intermediate_result('7_1'::text, 'binary'::citus_copy_format) intermediate_result(l_orderkey bigint) UNION ALL SELECT (1)::bigint AS int8) b
 DEBUG:  Creating router plan
 DEBUG:  Plan is router executable
  count 
@@ -98,12 +95,9 @@ SELECT count(*) FROM
    (SELECT l_orderkey FROM lineitem_subquery) UNION
    (SELECT l_partkey FROM lineitem_subquery)
 ) b;
-DEBUG:  generating subplan 10_1 for subquery SELECT l_orderkey FROM public.lineitem_subquery
-DEBUG:  generating subplan 10_2 for subquery SELECT l_partkey FROM public.lineitem_subquery
-DEBUG:  Creating router plan
-DEBUG:  Plan is router executable
-DEBUG:  generating subplan 10_3 for subquery SELECT intermediate_result.l_orderkey FROM read_intermediate_result('10_1'::text, 'binary'::citus_copy_format) intermediate_result(l_orderkey bigint) UNION SELECT intermediate_result.l_partkey FROM read_intermediate_result('10_2'::text, 'binary'::citus_copy_format) intermediate_result(l_partkey integer)
-DEBUG:  Plan 10 query after replacing subqueries and CTEs: SELECT count(*) AS count FROM (SELECT intermediate_result.l_orderkey FROM read_intermediate_result('10_3'::text, 'binary'::citus_copy_format) intermediate_result(l_orderkey bigint)) b
+DEBUG:  generating subplan 9_1 for subquery SELECT l_orderkey FROM public.lineitem_subquery
+DEBUG:  generating subplan 9_2 for subquery SELECT l_partkey FROM public.lineitem_subquery
+DEBUG:  Plan 9 query after replacing subqueries and CTEs: SELECT count(*) AS count FROM (SELECT intermediate_result.l_orderkey FROM read_intermediate_result('9_1'::text, 'binary'::citus_copy_format) intermediate_result(l_orderkey bigint) UNION SELECT intermediate_result.l_partkey FROM read_intermediate_result('9_2'::text, 'binary'::citus_copy_format) intermediate_result(l_partkey integer)) b
 DEBUG:  Creating router plan
 DEBUG:  Plan is router executable
  count 

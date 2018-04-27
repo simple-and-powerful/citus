@@ -785,6 +785,16 @@ DeferErrorIfCannotPushdownSubquery(Query *subqueryTree, bool outerMostQueryHasLi
 					  "functions";
 	}
 
+	/*
+	 * We don't need to do the extensive checks on the subqueryTree if there are
+	 * no distributed tables (e.g., the subquery consists of only intermediate
+	 * results or reference tables, which are always safe to pushdown).
+	 */
+	if (preconditionsSatisfied && !QueryContainsDistributedTableRTE(subqueryTree))
+	{
+		return deferredError;
+	}
+
 	if (subqueryTree->limitOffset)
 	{
 		preconditionsSatisfied = false;
