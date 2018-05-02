@@ -1,1 +1,5 @@
+# get everything ready for failure testing
+test: failure_setup
+
 test: failure_testing
+test: failure_create_empty_shard
