@@ -29,6 +29,8 @@ image: Visual Studio 2017
 environment:
   VCPKG_DIR: C:\tools\vcpkg
   APPVEYOR_SAVE_CACHE_ON_ERROR: true
+  APPVEYOR_RDP_PASSWORD:
+    secure: yUFBUe/7ipg+1gRS8tH5Id4kclb8nUBt4biwbFjQc9U=
 
 # scripts that are called at very beginning, before repo cloning
 init:
