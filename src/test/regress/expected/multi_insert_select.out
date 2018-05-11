@@ -751,6 +751,7 @@ DEBUG:  Set operations are not allowed in distributed INSERT ... SELECT queries
 DEBUG:  Collecting INSERT ... SELECT results on coordinator
 DEBUG:  Creating router plan
 DEBUG:  Plan is router executable
+DETAIL:  distribution column value: 17
 -- some supported LEFT joins
  INSERT INTO agg_events (user_id)
  SELECT
